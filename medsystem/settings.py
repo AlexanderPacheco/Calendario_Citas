@@ -191,7 +191,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER='medsistemnotify@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD='XYvBPs9HiQWKL8r'
+EMAIL_HOST_PASSWORD='EMAIL_PASSWord'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
 
