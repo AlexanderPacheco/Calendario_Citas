@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8g0)k*4l2c(*vzqiga7)ya(y2l_*hzq5wy8q&zsta*^*l5wp_='
+SECRET_KEY = 'Secret_key_here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'medsystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'DB_ENGINE',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
