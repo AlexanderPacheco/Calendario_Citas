@@ -1,0 +1,124 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Cita{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/cita_atender.css' %}" />
+{% endblock css %}
+{% block content %} 
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+<div class="col"></div>
+<div style="background-color: #49cae0;  margin: 20px;" class="col-8" >
+          
+    <div class="citas">
+        <div class="cita">
+            <div class="paciente">
+                <p>
+                    Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                    Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                    Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                    Email: <strong>{{cita.paciente.correo}}</strong></br>
+                </p>
+            </div>
+            <div class="observaciones">
+                <p>
+                    <strong>OBSERVACION:</strong>
+                    </br>
+                    {{cita.paciente.descripccion}}
+                </p>
+            </div>
+            <div class="resumen">
+                <p>
+                    {{cita}} </br>
+                    <small>{{cita.fecha_cita}}</small>
+                    <small>{{cita.hora_cita}}</small>
+                </p>
+            </div>
+            <div class="actions" >
+                <a href="{% url 'atender_cita' cita.id %}" class="btn btn-primary "> TERMINAR CITA </a>
+            </div>
+            <br>
+            <div class="actions">
+                <a href="{% url 'crear_examen' cita.id %}" class="btn btn-warning"> GENERACIÓN DE EXÁMENES MÉDICOS</a>
+            </div>
+            
+
+            <div class="actions" style="width:800px; margin:0 auto;">
+                <a href="{% url 'reporte_historial_clinicoPaciente' cita.paciente.id %}" class="btn btn-info"> HISTORIAL MÉDICOS</a>
+            </div>
+        </div>
+        <div class="anotaciones">
+            {% if cita.anotaciones.all|length > 0%}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Descripcion </td>
+                                <td>Opciones</td>			
+                            </tr>		
+                        </thead>
+                        <tbody>
+                            
+                        {% for anotacion in cita.anotaciones.all %}
+                            <tr>
+                                <td>{{ anotacion.descripcion }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'modificar_anotacion' anotacion.no_anotacion %}">Modificar</a>
+                                    <a class="btn btn-danger mt-1" href="{% url 'eliminar_anotacion' anotacion.no_anotacion %}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}    
+                        </tbody>
+                    </table> 
+            {% else %}
+                <h4>Aun no se han realizado anotaciones en esta cita!</h4>
+            {% endif %}
+            
+            <div class="agregar_nueva">
+                {% for field in anotacion_form.visible_fields %}
+                    {{field.errors}}
+                {% endfor %}
+                <form action="{% url 'crear_anotacion' cita.id %}" method='POST'>{% csrf_token %}
+                    {{ anotacion_form.as_p }}
+                    <input class="btn btn-success btn-block" type='submit' value='Agregar anotación'/>
+                </form>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 20px;" class="recetas">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Detalle de la Receta </td>
+                        <td>Opciones</td>			
+                    </tr>		
+                </thead>
+                <tbody>
+                    
+                {% for receta in cita.recetas.all %}
+                    <tr>
+                        <td>{{ receta.detalle_receta }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'modificar_receta' receta.id %}">Modificar</a>
+                            <a class="btn btn-danger mt-1" href="{% url 'eliminar_receta' receta.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}    
+                </tbody>
+            </table> 
+            
+            <div class="agregar_nueva2">
+                {% for field in receta_form.visible_fields %}
+                    {{field.errors}}
+                {% endfor %}
+                <form action="{% url 'crear_receta' cita.id %}" method='POST'>{% csrf_token %}
+                    {{ receta_form.as_p }}
+                    <input class="btn btn-success btn-block" type='submit' value='Agregar receta'/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col"></div>
+</div> 
+{% endblock content %}

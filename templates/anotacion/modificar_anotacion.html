@@ -1,0 +1,27 @@
+{%extends '_base.html'%}
+
+
+{% block content %}
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+    <div class="col"></div>
+    <div style="background-color: #474e5d; color: white; margin: 20px;" class="col-6" >
+    <h3 style="text-align: center;">
+        Modifica la anotacion
+    </h3>
+    <form style="border-bottom: 20px;" action="" method="POST">
+        {%csrf_token%}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input class="btn btn-success" type="submit" value="Modificar">
+        <a class="btn btn-primary" href="{% url 'listado_anotaciones' %}">Volver</a>
+    </form>
+    {{mensaje}}
+</div>
+<div class="col"></div>
+</div>
+
+
+{% endblock %}
+

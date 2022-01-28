@@ -1,0 +1,44 @@
+{% load static %}
+
+<div class="tabla-recetas">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="text-align: center;">Paciente Nombre</th>
+      <th style="text-align: center;">Paciente Apellido</th>
+      <th style="text-align: center;">Fecha</th>
+      <th style="text-align: center;">Detalle</th>
+      <th style="text-align: center;">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <div class="recetas">
+    {% for receta in recetas %}
+    <tr>
+        <div class="receta">
+            {% if receta.cita.paciente.nombre %}
+              <td>{{receta.cita.paciente.nombre}}</td>
+            {% else %}
+              <td>{{receta.paciente.nombre}}</td>
+            {% endif %}
+            {% if receta.cita.paciente.apellido %}
+              <td>{{receta.cita.paciente.apellido}}</td>
+            {% else %}
+              <td>{{receta.paciente.apellido}}</td>
+            {% endif %}
+            <td>{{receta.fecha}}</td>
+            <td>{{receta.detalle_receta}}</td>
+            <td>
+              <a href={{receta.get_absolute_url}} class="btn btn-info">Ver</a>
+              <a href="{% url 'modificar_receta' receta.pk %}" class="btn btn-warning">Modificar</a>
+              <a class="btn btn-danger" href="{% url 'eliminar_receta' receta.pk %}">Eliminar</a>
+            </td>
+        </div>
+    </tr>
+    {% endfor %}
+    </div>
+  </tbody>
+</table>
+</div>

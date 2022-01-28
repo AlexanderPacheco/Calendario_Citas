@@ -1,0 +1,44 @@
+{%extends '_base.html'%}
+{% block content %}
+<h3>
+    Examenes Solicitados:
+</h3>
+{% if lista_examenes %}
+
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+    <div class="col"></div>
+    <div style=" margin: 20px;" class="col-8" >
+        
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>No Examen</td>
+				<td>Fecha </td>
+				<td>Descripcion </td>
+				<td>Paciente</td>
+				<td>Opciones </td>			
+			</tr>		
+		</thead>
+		<tbody>
+			{% for examen in lista_examenes %}
+			<tr>
+				<td><a style="color: black;" href="{% url 'modificar_examen' examen.id %}"><u>{{ examen.pk }}</u></a> </td>
+				<td>{{ examen.fecha }}</td>
+				<td>{{ examen.descripcion }}</td>
+				<td>{{ examen.cita.paciente.nombre }} {{ examen.cita.paciente.apellido }}</td>
+				<td>
+					<a class="btn btn-danger" href="{% url 'eliminar_examen' examen.id %}">Eliminar</a>
+				</td>
+			</tr>
+			{% endfor %}
+			{% else %}
+			<h1>Aun no se han realizado examenes!</h1>
+			{% endif %}
+		</tbody>
+	</table>
+</div>
+<div class="col"></div>
+</div> 
+{% endblock %}
+

@@ -1,0 +1,88 @@
+.calendar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:1rem;
+}
+
+.citas{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 40% 60%;
+    grid-template-areas:  
+    "cita anotaciones";
+}
+
+.citas .anotaciones{
+    grid-area: anotaciones;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    border-left: 1px solid black;
+}
+.citas .cita{
+    grid-area: cita;
+    background-color: #dededede;
+    min-width: 80%;
+    padding:1rem;
+    display: grid;
+    grid-template-rows: auto auto auto 2rem;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: 
+    "paciente paciente"
+    "resumen resumen"
+    " observaciones observaciones"
+    "actions actions";
+}
+
+.citas .cita .observaciones {
+    grid-area: observaciones;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.citas .cita .paciente{
+    grid-area: paciente;
+}
+
+.citas .cita .resumen{
+    grid-area: resumen;
+    font-size:1.5rem;
+}
+
+.citas .cita .resumen small{
+    font-size: 1rem;
+}
+
+.citas .cita .actions{
+    grid-area: actions;
+}
+
+@media only screen and (max-width: 600px) {
+    .citas .cita{
+        background-color: #dededede;
+        min-width: 80%;
+        padding:1rem;
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: auto;
+        grid-template-areas: 
+        "paciente "
+        "resumen"
+        "observaciones"
+        "actions";
+    }
+
+    .citas{
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 100%;
+        grid-template-areas:  
+        "cita "
+        "anotaciones";
+    }
+
+  }

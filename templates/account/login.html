@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log In{% endblock title %}
+
+{% block content %}
+
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+  <div class="col"></div>
+  <div style="background-color: #474e5d; color: white;" class="col-4" >
+    <h2 style="text-align: center; color: white; margin-top: 20px;">Log In</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button style="margin-bottom: 20px;" class="btn btn-success" type="submit">Log In</button>
+    </form>
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,151 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Citas{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/citas.css' %}" />
+{% endblock css %}
+{% block content %} 
+<!-- First Container  -->
+<div style="background-color: 1abc9c;" class="container-fluid bg-1 text-center">
+    <br>
+    <br>
+    <img src="{% static 'care.png' %}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+    <p style="font-size: 100px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Alfa-Medic</p>
+    <p style="font-size: 50px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Medical Website</p>
+    <br>
+</div>
+
+<!-- Second Container -->
+<div style="background-color:  #474e5d; color:white;" class="container-fluid bg-2 text-center">
+    <br>
+    <br>
+    <p style="font: 400 15px Lato, sans-serif; font-size: 20px; font-style: oblique;">En Medical Website tu salud es lo mas importante, por ello estamos contigo en todo el proceso de tus citas.</p>
+   
+    <button type="button" class="btn btn-outline-light" href="#" class="tool" onclick="OpenModal()">Agendar nueva cita</button>
+    <br>
+    <br>
+    <br>
+</div>
+<!-- Third Container -->
+
+<div class="row" style="background-color: white; font: 400 15px Lato, sans-serif; font-size: 20px;">
+    <div class="col"></div>
+    <div class="col-8" >
+        <div class="container-fluid bg-3 text-center">  
+            <br><br>  
+            <h3 class="margin">Servicios</h3><br>
+            <div class="row">
+                <div class="col-sm-3">
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Citas En Proceso</h5>
+                            <img src="{% static 'icon6.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <br><br>
+                         
+                            <form action="{% url 'citas' %}">
+                                <button type="submit" class="btn btn-outline-info">Ver Citas</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"> 
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Consulta De Examenes</h5>
+                            <img src="{% static 'icon1.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <br><br>
+
+                            <form action="{% url 'ExaminationListView' %}">
+                                <button type="submit" class="btn btn-outline-info">Ver Examenes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Historial Clinico</h5>
+                            <img src="{% static 'icon6.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <br><br>
+
+                            <form action="{% url 'reporte_historial_clinico' %}">
+                                <button type="submit" class="btn btn-outline-info">Archivo Clinico</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Reportes Gráficos</h5>
+                            <img src="{% static 'icon55.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <br><br>
+                            <form action="{% url 'chart' %}">
+                                <button type="submit" class="btn btn-outline-success">Días concurridos</button>
+                            </form><br>
+                            <form action="{% url 'chartMonth' %}">
+                                <button type="submit" class="btn btn-outline-warning">Meses concurridos</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div id="carouselExampleIndicators" style="padding-top: 80px; padding-bottom: 70px; background-color: #474e5d; text-align: center;" class="carousel slide" data-ride="carousel text-center">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <p style="font: 400 15px Lato, sans-serif; font-size: 30px; font-style: italic; color: white;">Misión</p>
+        <p style="font: 400 15px Lato, sans-serif; font-size: 20px; font-style: oblique; color: white;">Brindar atención médica integral a sus pacientes, priorizando la comunicacion con el cliente.</p><br>
+      </div>
+      <div class="carousel-item">
+        <p style="font: 400 15px Lato, sans-serif; font-size: 30px; font-style: italic; color: white;">Visión</p>
+        <p style="font: 400 15px Lato, sans-serif; font-size: 20px; font-style: oblique; color: white;">Prestar siempre un servicio integral que facilite al cliente en sus necesidades que su salud requiere.</p><br>
+      </div>
+      <div class="carousel-item">
+        <p style="font: 400 15px Lato, sans-serif; font-size: 30px; font-style: italic; color: white;">Objetivo</p>
+        <p style="font: 400 15px Lato, sans-serif; font-size: 20px; font-style: oblique; color: white;">Mantener una comunicacion constante con el cliente desde que inicia su proceso de registro hasta que finalize sus citas, priorizando <br> que el cliente no salga de casa, para ello sus examenes se envian de forma digital.</p>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+ {% endblock  %}
+
+ {% block modal %}
+    {% include 'layout/modals/search_user.html' %}
+{% endblock modal %}
+
+{% block js %}
+    <script>
+        function OpenModal(){
+            $("#staticBackdrop").modal("show");
+        }
+
+        
+    </script>
+{% endblock js %}

@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Resultados de busqueda {% endblock %}
+
+{% block content %}
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+    <div class="col"></div>
+    <div style="background-color: #17e4b7; color: white;" class="col-8" >
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="title">
+                    <h3>Pacientes:</h3>
+                </div>
+                {% include 'users/lista_de_pacientes.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="title">
+                    <h3>Citas:</h3>
+                </div>
+                {% include 'citas/lista_de_citas.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="title">
+                    <h3>Recetas:</h3>
+                </div>
+                {% include 'recetas/recetas.html' %}
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col"></div>
+</div>
+{% endblock content %}

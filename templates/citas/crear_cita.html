@@ -1,0 +1,65 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Cita{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/appointment.css' %}" />
+{% endblock css %}
+{% block content %} 
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+    <div class="col"></div>
+    <div style="background-color: #474e5d; color: white;" class="col-4" >
+
+    <div class="cita">
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="detail">
+            <div class="title d-flex justify-content-center">
+                <h3>{{name}}</h3>
+            </div>
+            <form action="{% url 'appointment_create' pk=id %}" method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="datePlanified">Fecha planificada</label>
+                            <input type="date" class="form-control" id="datePlanified" 
+                            name="fecha_cita" value="{{cita.fecha_cita|date:"Y-m-d"}}">
+                            <small>{{cita.fecha_cita}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="timePlanified">Hora planificada</label>
+                            <input type="time" class="form-control" id="timePlanified" 
+                            name="hora_cita" value="{{cita.hora_cita|time:"H:i"}}">
+                            <small>{{cita.hora_cita}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="comentarioCita">Comentario</label>
+                            <textarea  type="text" class="form-control" id="comentarioCita"
+                                name="comentario" rows=5>{{cita.comentario}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mb-5">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="col"></div>
+</div>
+{% endblock content %}

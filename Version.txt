@@ -1,0 +1,16 @@
+#Version 1.0.0
+Contiene todo el crud de anotaciones
+#Version 2.0.0
+Se agregaron CRUD de pacientes y tareas del sprint anterior.
+#Version 3.0.0
+Se agrregó el CRUD de recetas y algunas funciones de citas. Así como también filtros para buscar citas por pacientes, citas, anotaciones y recetas.
+#Version 3.0.1
+Resolviendo hotfix de funcion Buscar cita por fecha.
+#Version 4.0.0
+Se agreó toda la funcionalidad de recetas y exámenes clínicos.
+#Version 4.1.0
+Agregando detalles de los recordatorios de sms y reportes gráficos
+#Version 4.2.0
+Se agregó el controlador para el reporte gráfico.
+#Version 5.0.0
+Se lograron terminar las historias restantes

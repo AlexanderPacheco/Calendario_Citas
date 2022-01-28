@@ -1,0 +1,78 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Exámenes Clínicos{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/cita_atender.css' %}" />
+{% endblock css %}
+{% block content %} 
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+
+<div class="col"></div>
+<div style="background-color: #49cae0;  margin: 20px;" class="col-8" >
+            
+    <div class="citas">
+        <div class="cita">
+            <div class="paciente">
+                <p>
+                    Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                    Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                    Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                    Email: <strong>{{cita.paciente.correo}}</strong></br>
+                </p>
+            </div>
+            <div class="observaciones">
+                <p>
+                    <strong>OBSERVACION:</strong>
+                    </br>
+                    {{cita.paciente.descripccion}}
+                </p>
+            </div>
+            <div class="resumen">
+                <p>
+                    {{cita}} </br>
+                    <small>{{cita.fecha_cita}}</small>
+                    <small>{{cita.hora_cita}}</small>
+                </p>
+            </div>
+            <div class="actions">
+                <a href="{% url 'cita_detail' cita.id %}" class="btn btn-primary "> TERMINAR GENERACIÓN DE EXÁMENES </a>
+            </div>
+        </div>
+        <div class="examenes">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Exámen a Realizar</td>
+                        <td>Opciones</td>			
+                    </tr>		
+                </thead>
+                <tbody>
+                    
+                {% for examen in cita.examenes.all %}
+                    <tr>
+                        <td>{{ examen.descripcion }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'modificar_examen' examen.id %}">Modificar</a>
+                            <a class="btn btn-danger mt-1" href="{% url 'eliminar_examen' examen.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}    
+                </tbody>
+            </table> 
+            
+            <div class="agregar_nueva">
+                {% for field in examination_form.visible_fields %}
+                    {{field.errors}}
+                {% endfor %}
+                <form action="{% url 'accion_crear' cita.id %}" method='POST'>{% csrf_token %}
+                    {{ examination_form.as_p }}
+                    <input class="btn btn-success btn-block" type='submit' value='Generar Exámen Clínico'/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col"></div>
+</div> 
+{% endblock content %}

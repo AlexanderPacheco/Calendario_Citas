@@ -1,0 +1,36 @@
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Buscar usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-align-items-center">
+        <form action="{% url 'search_by_name' %}" method="get" class="form-inline my-2 my-lg-0 pr-4">
+          <div class="form-group">
+          <label for="searchCalendar">
+          <i class="fa fa-search pr-2"></i>
+          </label>
+          <input name="q" class="form-control mr-sm-2" type="text" placeholder="Escribe algo"
+                  aria-label="Buscar" id="searchCalendar">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <small>Si estas en escritorio luego de escribir presiona ENTER si estas en tablet o telefono presiona ACEPTAR desde el teclado</small>
+        <small>Puedes buscar por nombre, apellido e incluso número de télefono</small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "*"
+psycopg2-binary = "*"
+django-allauth = "*"
+django-crispy-forms = "*"
+behave-django = "*"
+reportlab = "*"
+xhtml2pdf = "*"
+django-scheduler = "*"
+celery = "*"
+apscheduler = "*"
+django-matplotlib = "*"
+django-chartjs = "*"
+twilio = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

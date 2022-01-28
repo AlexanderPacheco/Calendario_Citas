@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Bookstore{% endblock title %}</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {% block css %}
+    {% endblock css %}
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+  </head>
+  <body style="background-color: #1abc9c;">
+    <header>
+
+      <!-- Navbar-->
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'medical.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+          Alfa-Medic
+        </a>
+        <form class="form-inline" action="{% url 'search_by_name' %}" method="get">
+          
+          
+          {% if user.is_authenticated %}
+          <a class="text-white" href="{% url 'listado_pacientes' %}">Listado de Pacientes</a>
+            <a class="p-2 text-white" href="{% url 'citas' %}">Buscar Citas</a>
+            <a class="p-2 text-white" href="{% url 'recetas' %}">Recetas</a>
+            <a class="p-2 text-white" href="{% url 'account_logout' %}">Log Out</a>
+          {% else %}
+            <a class="p-2 text-white" href="{% url 'account_login' %}">Log In</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'account_signup' %}">Sign Up</a>
+          {% endif %}
+          <div class="form-group">
+            <label for="searchCalendar">
+            <i class="fa fa-search pr-2"></i>
+            </label>
+            <input name="q" class="form-control mr-sm-2" type="text" placeholder="Nombre/Apellido/Otro"
+                    aria-label="Buscar" id="searchCalendar">
+            </div>
+        </form>
+      </nav>
+    </header>
+    
+    
+    {% block content %} {% endblock content %}
+
+    
+    <!-- JavaScript -->
+    <!-- JS, Popper.js, and jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+      integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
+      crossorigin="anonymous"
+    ></script>
+    {% block modal %} {% endblock %}
+    {% block js %}
+    {% endblock js %}
+  </body>
+  
+  <!-- Footer -->
+  <footer style="bottom: 0; padding-top: 50px; padding-bottom: 40px; background-color: #2f2f2f;" class="container-fluid bg-4 text-center" >
+    <p style="font: 400 15px Lato, sans-serif; font-size: 15px; color: white;">Analisis y Diseño 1</p>
+    <p style="font: 400 15px Lato, sans-serif; font-size: 15px; color: white;">Alfa-Medic</p>
+  </footer>
+</html>

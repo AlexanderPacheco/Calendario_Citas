@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Historial Clinico</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <img src ="https://proyecto1analisis1.files.wordpress.com/2020/08/cropped-hospital-general-2.png">
+               <h1> <p class='title'>Historial clinico de todos los Pacientes</p></h1>
+            </div>
+        <div>
+        <div class='details'>
+            
+            
+            <hr class='hrItem' />
+            <h2><p style="color:#264F69";>Nombre Del Paciente: {{Pacientes.nombre}}  {{Pacientes.apellido}}</p></h2>
+            Telefono:  {{Pacientes.telefono}}<br/>
+            Correo:  {{Pacientes.telefono}}<br/>
+            Fecha Nacimiento:  {{Pacientes.fecha_nacimiento}}<br/>
+            Genero:  {{Pacientes.sexo}}<br/>
+            Descripcion adicional:  {{Pacientes.descripcion}}<br/>
+            <h3><p style="color:#264F69";>Citas Realizadas: </p></h3> 
+            
+            {% for cita in Citas%}
+                {%if cita.paciente == Pacientes%}
+                    <blockquote >
+                    <h4><p style="color:#8C212E";>Cita {{cita.fecha_cita}} </p></h4>
+                    Hora cita: {{cita.hora_cita}}<br>
+                    Comentario cita: {{cita.comentario}}
+                    <h4><p style="color:#264F69";>Anotaciones realizadas en la cita: </p></h4> 
+                    
+                    {% for anotacion in Anotaciones%}
+                    {%if anotacion.id_cita == cita%}
+                    <blockquote >  Fecha y hora anotacion: {{anotacion.fecha_hora}}<br>
+                        Anotacion: {{anotacion.descripcion}}<br><br>
+                    </blockquote >    
+                    {%endif%}
+                    {%endfor%}
+
+                    <h4><p style="color:#264F69";>Recetas brindadas al paciente: </p></h4> 
+                    {% for receta in Recetas%}
+                    {%if receta.cita == cita%}
+                    <blockquote >
+                        Fecha receta: {{anotacion.fecha_hora}}<br>
+                        Descripcion Receta: {{anotacion.descripcion}}<br><br>
+                    </blockquote>
+                    {%endif%}
+                    {%endfor%}
+
+                    <h4><p style="color:#264F69";>Examenes solicitados al paciente: </p></h4> 
+                    {% for examen in Examenes%}
+                    {%if examen.cita == cita%}
+                    <blockquote >
+                        Fecha solicitud examen: {{examen.fecha}}<br>
+                        Descripcion examen: {{examen.descripcion}}<br><br>
+                    </blockquote>
+                    {%endif%}                
+                    {%endfor%}
+
+                    </blockquote>
+                {%endif%}
+                {%endfor%}   
+
+            <hr class='hrItem' />
+ 
+            
+            
+        </div>
+    </div>
+    </body>
+</html>

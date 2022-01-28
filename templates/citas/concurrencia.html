@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Historial Clinico</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 30px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <img src ="https://proyecto1analisis1.files.wordpress.com/2020/08/cropped-hospital-general-2.png">
+               <h1> <p class='title'>Reporte de concurrencia en la clinica</p></h1>
+            </div>
+        <div>
+        <div class='details'>
+
+            <h2><p style="color:#264F69";> Total de citas agendadas:     {{Total}}</p></h2>
+            <h2><p style="color:#264F69";> Total de citas atendidas:     {{Citas_atendidas}}</p></h2>
+            <h2><p style="color:#264F69";> Total de citas pendientes:     {{Citas_pendientes}}</p></h2>
+            <h2><p style="color:#264F69";> Total de citas canceladas:    {{Citas_canceladas}}</p></h2>
+            <h2><p style="color:#264F69";> El dia mas concurrido es {{Fecha_concurrido.fecha_cita}} con un total de {{Fecha_concurrido.total}} citas agendadas </p></h2>
+            <h2><p style="color:#264F69";> El dia menos concurrido es {{Menos_concurrido.fecha_cita}} con un total de {{Menos_concurrido.total}} citas agendadas </p></h2>
+            <h2><p style="color:#264F69";> El promedio de citas por dia es de:    {{Promedio_citas}} citas</p></h2>
+            <h2><p style="color:#264F69";> CITAS REALIZADAS</p></h2>
+            {% for cita in Citas%}
+            <hr class='hrItem' />
+            <p  style="line-height: 100%">
+            <h4><p style="color:#264F69"; LINE-HEIGHT:10px;>Cita agendada para {{cita.fecha_cita}} a las {{cita.hora_cita}} </p></h2>
+            <h4><p style="color:#264F69";>La cita se agendo el dia {{cita.fecha}}</p></h2>
+            <h4><p style="color:#264F69";>El paciente para la cita es  {{cita.paciente}}</p></h2>
+            </p> 
+            <hr class='hrItem' />
+            {%endfor%}
+            <h2></h2>        
+            
+            
+        </div>
+    </div>
+    </body>
+</html>

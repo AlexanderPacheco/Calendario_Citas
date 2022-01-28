@@ -1,0 +1,53 @@
+  
+{%extends '_base.html'%}
+
+
+{% block content %}
+
+<div class="row" >
+  
+    <div class="col"></div>
+    <div class="col-8" >
+
+	<h3>
+		Pacientes registrados:
+	</h3>
+	{% if lista_pacientes %}
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td style="text-align: center;">Correo</td>
+				<td style="text-align: center;">Nombre completo </td>		
+				<td style="text-align: center;">Accion </td>		
+			</tr>		
+		</thead>
+		<tbody>
+			{% for paciente in lista_pacientes %}
+			<tr>
+				<td ><a style="color: black; " href="{% url 'detalle_paciente' paciente.correo %}"><u>{{ paciente.correo }}</u></a></td>
+				<td>{{ paciente.nombre }}         {{ paciente.apellido }}</td>
+				<td>
+					<a class="btn btn-primary" href="{% url 'modificar_paciente' paciente.correo %}">Modificar</a> 
+					<a class="btn btn-warning" href="{% url 'ingresar_receta_off' paciente.pk %}">Crear Receta</a>
+					<a class="btn btn-success" href="{% url 'recetas'%}">Recetas</a>
+				</td>
+			</tr>
+			{% endfor %}
+			{% else %}
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<h1>Aun no se han registrado pacientes!</h1>
+			{% endif %}
+		</tbody>
+	</table> 
+
+</div>
+<div class="col"></div>
+</div>
+{% endblock %}

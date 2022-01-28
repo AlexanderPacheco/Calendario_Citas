@@ -1,0 +1,31 @@
+{%extends '_base.html'%}
+
+
+{% block content %}
+
+<div class="row" style=" font: 400 15px Lato, sans-serif; font-size: 20px; margin: 30px;">
+  
+    <div class="col"></div>
+    <div style="background-color: #474e5d; color: white; margin: 20px;" class="col-4" >
+        
+    <h3>
+        Paciente registrado:
+    </h3>
+
+    <form method="POST">{% csrf_token %}
+        <tr> <td>nombre </td> <td>{{ form.nombre }}</td></tr>
+        <tr> <td>apellido </td> <td>{{ form.apellido }}</td></tr>
+        <tr> <td>telefono </td> <td>{{ form.telefono }}</td></tr>
+        <tr> <td>telefono_emergencia </td> <td>{{ form.telefono_emergencia }}</td></tr>
+        <tr> <td>correo </td> <td>{{ form.correo }}</td></tr>
+        <tr> <td>fecha_nacimiento </td> <td>{{ form.fecha_nacimiento }}</td></tr>
+        <tr> <td>direccion </td> <td>{{ form.direccion }}</td></tr>
+        <tr> <td>descripccion </td> <td>{{ form.descripccion }}</td></tr>
+        <tr> <td>sexo </td> <td>{{ form.sexo }}</td></tr>
+        
+    </form>
+</div>
+<div class="col"></div>
+</div>
+
+{% endblock %}

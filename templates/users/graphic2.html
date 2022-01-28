@@ -1,0 +1,25 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Reporte gráfico{% endblock %}
+{% block content %} 
+    
+
+ {% load static %}
+    <b><p style="text-align: center; font-size: 50px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">¡Días concurridos!</p></b>
+
+    <canvas id="myChart" width="900" height="200"></canvas>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+    <script type="text/javascript">
+        $.get('{% url "line_chart_month_json" %}', function(data) {
+            var ctx = $("#myChart").get(0).getContext("2d");
+            new Chart(ctx, {
+                type: 'line', data: data
+            });
+        });
+    </script>
+    <br><br>
+    <h1 style="text-align: center;"><a class="btn btn-danger" href="{% url 'home' %}"><b>VOLVER</b></a></h1>
+    <br>
+ {% endblock  %}

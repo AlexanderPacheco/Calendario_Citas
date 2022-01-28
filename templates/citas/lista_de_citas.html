@@ -1,0 +1,32 @@
+{% load static %}
+{% comment %} Esta plantilla es para mostrar en el resultado de las busquedas {% endcomment %}
+<div class="tabla-citas">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+	  <th>Comentario</th>
+	  <th>Fecha</th>
+      <th>Hora</th>
+    </tr>
+  </thead>
+
+  <tbody>
+	{% for cita in citas %}
+		<tr>
+			<td>{{cita.paciente.nombre}}</td>
+			<td>{{cita.paciente.apellido}}</td>
+			<td>{{cita.comentario}}</td>
+			<td>{{cita.fecha_cita}}</td>
+			<td>{{cita.hora_cita}}</td>
+			<td>
+				<a href="{{ cita.get_absolute_url }}" class="btn btn-secondary ">Ver cita</a>
+			</td>
+		</tr>
+	{% endfor %}
+  </tbody>
+  
+</table>
+</div>

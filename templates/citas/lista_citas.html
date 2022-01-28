@@ -1,0 +1,55 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Citas{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/citas.css' %}" />
+{% endblock css %}
+{% block content %} 
+    <div class="calendar">
+        <h4>
+            <label for="searchCalendar">¿Consultar una fecha?</label>
+        </h4>
+        <form  class="form-inline mt-2 mt-md-0" action="#"
+            method="get">
+            <input name="q" class="form-control mr-sm-2" type="date" placeholder="Search"
+            aria-label="Search" id="searchCalendar">
+            <input  class="btn btn-primary" type="submit" value="Buscar">
+        </form>
+    </div>
+
+    <div class="citas">
+        {% for cita in cita_list %}
+            <div class="cita">
+                <div class="paciente">
+                    <p>
+                        Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                        Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                        Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                        Email: <strong>{{cita.paciente.correo}}</strong></br>
+                    </p>
+                </div>
+                <div class="resumen">
+                    <p>
+                        {{cita}} </br>
+                        <small>{{cita.fecha_cita}}</small>
+                        <small>{{cita.hora_cita}}</small>
+                        <br>
+                        <strong>{{cita.estado}}</strong>
+                    </p>
+                </div>
+                <div class="actions">
+                    {% if cita.estado == "ATENDIDA" or cita.estado == "CANCELADA" %}
+                    <a href="{{ cita.get_absolute_url }}" class="btn btn-primary disabled" > ATENDER </a>
+                    {% else  %}
+                    <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> ATENDER </a>
+                    {% endif  %}
+                    <a href="{% url 'modificar_cita' cita.id %}" class="btn btn-warning "> EDITAR </a>
+                    <a href="{% url 'eliminar_cita' cita.id %}" class="btn btn-danger "> EIMINAR </a>
+                    
+			
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+ {% endblock  %}
+
